@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  header {
+    background-color: #fcd73d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+  }
+  header img.logo {
+    height: 80px;
+  }
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  .registro-btn {
+    background-color: #8b5e3c;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  .hero {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  .hero img {
+    width: 33%;
+    height: auto;
+  }
+  .contenido {
+    text-align: center;
+    padding: 30px;
+  }
+  .contenido p {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: auto;
+  }
+  .descubre-btn {
+    margin-top: 20px;
+    background-color: yellow;
+    padding: 15px 30px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }

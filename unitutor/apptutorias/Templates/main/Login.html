@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Monitorias USC - Iniciar Sesión</title>
+  <link rel="stylesheet" href="{% static 'main/login.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <img src="logo.png" alt="Logo USC" class="logo" />
+      <h1>MONITORIASUSC</h1>
+      <h2>INICIAR SESIÓN</h2>
+      <form id="LoginForm" method="post">
+        {% csrf_token %}
+
+        
+        {{form.username}}
+
+        {{form.password}}
+
+        
+        <button type="submit">Iniciar sesión</button>
+        {{ form.non_field_errors }}
+        <p class="login-link">¿No tienes cuenta? <a href="{% url 'signup' %}">Regístrate</a></p>
+        {% if form.non_field_errors %}
+        {% for error in form.error %}
+            {{ error }}
+        {% endfor %}
+{% endif %}
+
+    </div>
+    
+  </div>
+
+      </form>
+
+ 
+</body>
+</html>

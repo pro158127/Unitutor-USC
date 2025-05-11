@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta - Monitorías USC</title>
+  <link rel="stylesheet" href="{% static 'main/sign-up.css' %}">
+</head>
+<body>
+  <div class="background">
+    <div class="form-container">
+      <div class="logo">
+        <img src="{% static 'main/logo.png' %}" alt="Logo USC">
+      </div>
+      <h2>MONITORIASUSC</h2>
+      <h3>CREAR CUENTA</h3>
+
+      <form method="post" id="registroForm" >
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {{ form.non_field_errors }}  <label for="id_username">ESCRIBE TU NOMBRE DE USUARIO</label>
+        {{ form.username }}
+
+
+                {{ form.non_field_errors }} <label for="id_email" >ESCRIBE TU CORREO INSTITUCIONAL</label>
+        {{ form.email }}
+        
+        <span id="error_email" class="error-message"></span>
+
+        <label for="id_telefono">ESCRIBE TU TELÉFONO</label>
+        {{ form.telefono }}
+        
+        <span id="error_telefono" class="error-message"> </span>
+        
+
+        <label for="id_password1">ESCRIBE TU CONTRASEÑA</label>
+        {{ form.password1 }}
+
+        <label for="id_password2">CONFIRMA TU CONTRASEÑA</label>
+        {{ form.password2 }}
+        <span class="error-message" id="error_password2"></span>
+
+
+        <label for="id_rol">SELECCIONA TU ROL</label>
+        {{ form.rol }}
+
+        <button type="submit" id="btn">Registrarse</button>
+        <p class="login-link">¿Ya estás registrado? <a href="{% url 'Login' %}">Inicia sesión</a></p>
+        {% if raw_errors %}
+        <div class="raw-error-output">
+            {{ raw_errors }}
+        </div>
+    {% endif %}
+
+      </form>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+      // Función para verificar si las contraseñas coinciden
+      function verificarContrasenas() {
+          var password = $('#id_password1').val();
+          var confirmPassword = $('#id_password2').val();
+          var errorSpan = $('#error_password2');
+  
+          if (confirmPassword !== '' && password !== confirmPassword) {
+              errorSpan.text('Las contraseñas no coinciden.');
+              return false; 
+          } else {
+              errorSpan.empty(); 
+              return true; 
+          }
+      }
+
+
+      function verificarcorreo(){
+          var email= $('#id_email').val();
+          var errorSpan =$('#error_email');
+          if(email !== '' && email.indexOf('@usc.edu.co') === -1){
+            errorSpan.text('El correo no es institucional.');
+            return false;
+          } else{
+            errorSpan.empty();
+            return true;
+          }
+      }
+      function verificarTelefono(){
+          var telefono = $('#id_telefono').val();
+          var errorSpan = $('#error_telefono');
+          if(telefono != '' && telefono.length < 10 || telefono.length >10 ){
+            errorSpan.text('El telefono no es valido .');
+            return false;
+          } else{
+              errorSpan.empty();
+              return true;
+            }
+          }
+      
+    
+
+      function habilitarBoton() {
+                if (verificarContrasenas() && verificarcorreo() && verificarTelefono()) {
+                    $('#btn').prop('disabled', false); // Habilita el botón
+                } else {
+                  $('#btn').prop('disabled', true);  // Deshabilita el botón
+                }
+            }
+
+      $('#id_email').blur(verificarcorreo);
+      $('#id_telefono').blur(verificarTelefono);
+
+      $('#id_email').on('input',verificarcorreo);
+
+      $('#id_email').on('input', habilitarBoton);
+       $('#id_password2').on('input', habilitarBoton);
+  
+    
+      $('#id_password2').blur(verificarContrasenas);
+  
+
+      $('#id_password2').on('input', verificarContrasenas);
+  
+
+      $('#registroForm').submit(function(event) {
+     
+          if (!verificarContrasenas() && !verificarcorreo()) {
+              event.preventDefault(); 
+          
+              return;
+          }
+  
+
+
+      });
+  });
+  </script>
+
+
+
+
+</body>
+</html>

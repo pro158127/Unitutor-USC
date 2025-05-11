@@ -1,0 +1,126 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Profesor - Monitorías USC</title>
+  <link rel="stylesheet" href="{% static 'panel/teacher.css'%}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Menú lateral -->
+    <aside class="sidebar">
+      <h2>👨‍🏫 Profesor</h2>
+      <ul>
+        <li onclick="showSection('clases')">📚 Clases</li>
+        <li onclick="showSection('cronograma')">📅 Cronograma</li>
+        <li onclick="showSection('material')">📁 Material</li>
+        <li onclick="showSection('avisos')">📢 Avisos</li>
+      </ul>
+    </aside>
+
+    <!-- Contenido dinámico -->
+    <main class="main-content">
+      <!-- Gestión de Clases -->
+      <section id="clases" class="section active">
+        <h3>📚 Gestión de Clases</h3>
+        <ul class="lista-clases">
+          <li>
+            Programación II - 20/06/25 - 10:00 AM - Salón 304
+            <button class="btn">Editar</button>
+            <button class="btn red">Eliminar</button>
+          </li>
+          <li>
+            Programación II - 22/06/25 - 2:00 PM - Salón 102
+            <button class="btn">Editar</button>
+            <button class="btn red">Eliminar</button>
+          </li>
+        </ul>
+        <form class="nueva-clase">
+          <input type="text" placeholder="Nombre de clase">
+          <input type="date">
+          <input type="time">
+          <input type="text" placeholder="Salón">
+          <button type="submit">Añadir clase</button>
+        </form>
+      </section>
+
+      <!-- Cronograma -->
+      <section id="cronograma" class="section">
+        <h3>📅 Cronograma</h3>
+        <form>
+          <label>Curso:</label>
+          <select name="curso">
+            <option>Programación II</option>
+            <option>Física I</option>
+            <option>Matemática Fundamental</option>
+          </select>
+          <label>Fecha:</label>
+          <input type="date">
+          <label>Hora:</label>
+          <input type="time">
+          <label>Salón:</label>
+          <input type="text" placeholder="Salón">
+          <button type="submit">Agregar al cronograma</button>
+        </form>
+        <div class="cronograma-lista">
+          <!-- Aquí se mostrarán los eventos ya registrados -->
+        </div>
+      </section>
+      
+
+      <!-- Material -->
+      <section id="material" class="section">
+        <h3>📁 Material del Curso</h3>
+        <form>
+          <label>Curso:</label>
+          <select name="curso">
+            <option>Programación II</option>
+            <option>Física I</option>
+            <option>Matemática Fundamental</option>
+          </select>
+      
+          <label>Fecha:</label>
+          <input type="date" name="fecha">
+      
+          <label>Nombre del archivo:</label>
+          <input type="text" name="nombre_archivo" placeholder="Ej. Introducción a programación">
+      
+          <label>Archivo:</label>
+          <input type="file" name="archivo">
+      
+          <label>Descripción:</label>
+          <input type="text" name="descripcion" placeholder="Breve descripción del material">
+      
+          <button type="submit">📤 Subir material</button>
+        </form>
+      </section>
+      
+
+      <!-- Avisos -->
+      <section id="avisos" class="section">
+        <h3>📢 Enviar Aviso</h3>
+        <form>
+          <label>Seleccionar curso:</label>
+          <select name="curso">
+            <option>Programación II</option>
+            <option>Física I</option>
+            <option>Matemática Fundamental</option>
+          </select>
+          <textarea placeholder="Mensaje para los estudiantes"></textarea>
+          <button type="submit">Publicar aviso</button>
+        </form>
+      </section>
+      
+    </main>
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>

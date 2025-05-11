@@ -1,0 +1,16 @@
+# Entorno virtual
+venv/
+env/ENV/ENVIRONMENT/venv3/venv3.8/venv3.9/venv3.10/venv3.11/venv3.12/venv3.13/venv3.14/venv3.15/venv3.16/venv3.17/venv3.18/venv3.19/venv3.20/venv3.21/venv3.22/venv3.23/venv3.24
+env/
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+
+# Archivos del entorno
+.env
+
+# Base de datos SQLite (si no quieres compartirla)
+db.sqlite3
+
+# Archivos de configuración de VS Code (opcional)
+.vscode/
